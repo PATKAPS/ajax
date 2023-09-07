@@ -195,6 +195,13 @@ const getChromaData = (chroma) => {
     chromaVideoSource.src = `${chroma.streamedVideo}`
     chromaVideo.appendChild(chromaVideoSource)
     } else {
+        const skinImgContainer = document.createElement('div')
+        skinImgContainer.classList.add('skin-full-image-container')
+        specificChromaContainer.appendChild(skinImgContainer)
+        const skinImg = document.createElement('img')
+        skinImg.classList.add('chroma-image')
+        skinImg.src = `${chroma.displayIcon}`
+        skinImgContainer.appendChild(skinImg)
         const nullVideoImgContainer = document.createElement('div')
         nullVideoImgContainer.classList.add('null-image-container')
         specificChromaContainer.appendChild(nullVideoImgContainer)

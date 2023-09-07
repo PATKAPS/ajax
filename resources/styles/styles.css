@@ -95,6 +95,7 @@ p {
 
 .chroma-container {
     display: flex;
+    width: 50vw;
     flex-direction: column;
     align-items: center;
 }
@@ -135,7 +136,7 @@ h1 {
 }
 
 .chroma-image {
-    height: 100%;
+    width: 100%;
     object-fit: contain;
 }
 
@@ -166,12 +167,29 @@ h1 {
 
 .skin-full-image-container {
     background-color: rgba(200, 200, 200, 0.9);
+    position: relative;
+    border-radius: 1rem;
+    margin: 1vw;
+    padding: 0.5rem;
+    width: 75vw;
+    max-width: 512px;
+    display: flex;
+    justify-content: center;
+}
+
+.skin-full-image-container-no-click {
+    background-color: rgba(200, 200, 200, 0.9);
+    position: relative;
     border-radius: 1rem;
     margin-bottom: 1rem;
     padding: 0.5rem;
-    height: 10vh;
+    height: 50vh;
     display: flex;
     justify-content: center;
+}
+
+.skin-full-image-container:hover {
+    cursor: pointer;
 }
 
 .null-image-container {
@@ -197,6 +215,7 @@ h1 {
 }
 
 .video-container {
+    position: relative;
     background-color: rgba(200, 200, 200, 0.9);
     border-radius: 1rem;
     display: flex;
@@ -210,6 +229,52 @@ h1 {
 .chroma-video {
     width: 100%;
     max-height: 100%;
+}
+
+.favorite-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    right: 1.3rem;
+    top: 1rem;
+    height: 10vw;
+    width: 10vw;
+    z-index: 1;
+}
+
+.favorite-button-container-alt {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    right: 0rem;
+    top: 0rem;
+    height: 10vw;
+    width: 10vw;
+    z-index: 1;
+}
+
+.favorite-button-container-alt:hover{
+    cursor: pointer;
+}
+
+.favorite-button-container:hover{
+    cursor: pointer;
+}
+
+.fa-2xl {
+    color: rgb(215, 25, 25);
+    object-fit: contain;
+    font-size: 10vw;
+    line-height: normal;
+}
+
+.fa-xl {
+    color: rgb(215, 25, 25);
+    object-fit: contain;
+    font-size: 5vw;
+    line-height: normal;
 }
 
 #mobile-footer {
@@ -237,5 +302,10 @@ h1 {
 
 .fa-lg {
     color: rgb(215, 25, 25);
+    line-height: normal;
+}
+
+.fa-lg:hover {
+    cursor: pointer;
 }
 

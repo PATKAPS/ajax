@@ -5,6 +5,8 @@ const specificWeaponContainer = document.getElementById('specific-weapon-contain
 const specificSkinContainer = document.getElementById('specific-skin-container')
 const specificChromaContainer = document.getElementById('specific-chroma-container')
 const landingContainer = document.getElementById('landing-container')
+const homeButton = document.getElementById('home-button')
+const favorites = []
 
 const enterSite = () => {
     landingContainer.classList.add('hidden');
@@ -14,6 +16,18 @@ const enterSite = () => {
 }
 
 enterButton.addEventListener('click', enterSite);
+
+const goHome = () => {
+    weaponContainer.classList.remove('hidden')
+    specificWeaponContainer.classList.add('hidden')
+    specificWeaponContainer.replaceChildren();
+    specificSkinContainer.classList.add('hidden')
+    specificSkinContainer.replaceChildren();
+    specificChromaContainer.classList.add('hidden')
+    specificChromaContainer.replaceChildren();
+}
+
+homeButton.addEventListener('click', goHome);
 
 const baseUrl = 'https://valorant-api.com/v1';
 
@@ -96,6 +110,15 @@ const getSkinData = (skin) => {
     const skinVideoContainer = document.createElement('div')
     skinVideoContainer.classList.add('video-container')
     specificSkinContainer.appendChild(skinVideoContainer)
+    const favoriteButtonContainer = document.createElement('div')
+    favoriteButtonContainer.classList.add('favorite-button-container')
+    skinVideoContainer.appendChild(favoriteButtonContainer)
+    const favoriteButton = document.createElement('i')
+    favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl')
+    favoriteButtonContainer.appendChild(favoriteButton)
+    favoriteButtonContainer.addEventListener('click', () => {
+        addToFavorites(skin)
+    })
     const skinVideo = document.createElement('video')
     skinVideo.classList.add('chroma-video')
     skinVideo.setAttribute('controls', true)
@@ -147,12 +170,21 @@ const getSkinData = (skin) => {
         }
     } else {
         const skinImgContainer = document.createElement('div')
-        skinImgContainer.classList.add('skin-full-image-container')
+        skinImgContainer.classList.add('skin-full-image-container-no-click')
         specificSkinContainer.appendChild(skinImgContainer)
         const skinImg = document.createElement('img')
         skinImg.classList.add('chroma-image')
         skinImg.src = `${skin.displayIcon}`
         skinImgContainer.appendChild(skinImg)
+        const favoriteButtonContainer = document.createElement('div')
+        favoriteButtonContainer.classList.add('favorite-button-container-alt')
+        skinImgContainer.appendChild(favoriteButtonContainer)
+        const favoriteButton = document.createElement('i')
+        favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
+        favoriteButtonContainer.appendChild(favoriteButton)
+        favoriteButtonContainer.addEventListener('click', () => {
+            addToFavorites(skin)
+        })
         const nullVideoImgContainer = document.createElement('div')
         nullVideoImgContainer.classList.add('null-image-container')
         specificSkinContainer.appendChild(nullVideoImgContainer)
@@ -194,14 +226,32 @@ const getChromaData = (chroma) => {
     const chromaVideoSource = document.createElement('source')
     chromaVideoSource.src = `${chroma.streamedVideo}`
     chromaVideo.appendChild(chromaVideoSource)
+    const favoriteButtonContainer = document.createElement('div')
+    favoriteButtonContainer.classList.add('favorite-button-container')
+    chromaVideoContainer.appendChild(favoriteButtonContainer)
+    const favoriteButton = document.createElement('i')
+    favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl')
+    favoriteButtonContainer.appendChild(favoriteButton)
+    favoriteButtonContainer.addEventListener('click', () => {
+        addToFavorites(skin)
+    })
     } else {
         const skinImgContainer = document.createElement('div')
-        skinImgContainer.classList.add('skin-full-image-container')
+        skinImgContainer.classList.add('skin-full-image-container-no-click')
         specificChromaContainer.appendChild(skinImgContainer)
         const skinImg = document.createElement('img')
         skinImg.classList.add('chroma-image')
         skinImg.src = `${chroma.displayIcon}`
         skinImgContainer.appendChild(skinImg)
+        const favoriteButtonContainer = document.createElement('div')
+        favoriteButtonContainer.classList.add('favorite-button-container-alt')
+        skinImgContainer.appendChild(favoriteButtonContainer)
+        const favoriteButton = document.createElement('i')
+        favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
+        favoriteButtonContainer.appendChild(favoriteButton)
+        favoriteButtonContainer.addEventListener('click', () => {
+            addToFavorites(skin)
+        })
         const nullVideoImgContainer = document.createElement('div')
         nullVideoImgContainer.classList.add('null-image-container')
         specificChromaContainer.appendChild(nullVideoImgContainer)
@@ -215,3 +265,7 @@ const getChromaData = (chroma) => {
         nullVideoImgContainer.appendChild(nullVideo)
     }
 }
+
+// const addToFavorites = () => {
+
+// }

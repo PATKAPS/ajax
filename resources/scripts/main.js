@@ -92,12 +92,10 @@ const getSkinData = (skin) => {
     skinHeader.classList.add('weapon-name')
     skinHeader.innerHTML = `${skin.displayName}`
     weaponNameContainer.appendChild(skinHeader);
-    const skinContainer = document.createElement('div')
-    skinContainer.classList.add('chroma-container')
-    specificSkinContainer.appendChild(skinContainer)
+    if (skin.levels[(skin.levels.length - 1)].streamedVideo) {
     const skinVideoContainer = document.createElement('div')
     skinVideoContainer.classList.add('video-container')
-    skinContainer.appendChild(skinVideoContainer)
+    specificSkinContainer.appendChild(skinVideoContainer)
     const skinVideo = document.createElement('video')
     skinVideo.classList.add('chroma-video')
     skinVideo.setAttribute('controls', true)
@@ -107,23 +105,24 @@ const getSkinData = (skin) => {
     const skinVideoSource = document.createElement('source')
     skinVideoSource.src = `${skin.levels[(skin.levels.length - 1)].streamedVideo}`
     skinVideo.appendChild(skinVideoSource)
-    // const chromaContainer = document.createElement('div')
-    // chromaContainer.classList.add('chroma-container')
-    // specificChromaContainer.appendChild(chromaContainer)
+    const skinContainer = document.createElement('div')
+    skinContainer.classList.add('chroma-container')
+    specificSkinContainer.appendChild(skinContainer)
     const chromaNameContainer = document.createElement('div')
     chromaNameContainer.classList.add('weapon-name-container')
     skinContainer.appendChild(chromaNameContainer)
-    const chromaName = document.createElement('h4')
+    const chromaName = document.createElement('h3')
     chromaName.classList.add('weapon-name')
     chromaName.innerHTML = `${skin.displayName} Chromas`;
     chromaNameContainer.appendChild(chromaName)
+    if (skin.chromas.length > 1) {
     for (let i = 1; i < skin.chromas.length; i++) {
         let chroma = skin.chromas[i]
         const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('skin-full-image-container')
         skinContainer.appendChild(skinImgContainer)
         const skinImg = document.createElement('img')
-        skinImg.classList.add('weapon-image')
+        skinImg.classList.add('chroma-image')
         skinImg.src = `${chroma.fullRender}`
         skinImgContainer.appendChild(skinImg)
         skinImgContainer.addEventListener('click', () => {
@@ -133,7 +132,39 @@ const getSkinData = (skin) => {
             pauseVideo(skinVideo)
         })
     }
-
+        } else {
+            const nullVideoImgContainer = document.createElement('div')
+            nullVideoImgContainer.classList.add('null-image-container')
+            skinContainer.appendChild(nullVideoImgContainer)
+            const nullVideoImg = document.createElement('img')
+            nullVideoImg.classList.add('null-image')
+            nullVideoImg.src = 'https://i.redd.it/h044s6irkmr81.png'
+            nullVideoImgContainer.appendChild(nullVideoImg)
+            const nullVideo = document.createElement('h3')
+            nullVideo.classList.add('text-center')
+            nullVideo.innerHTML = 'Sorry, chromas for this skin do not exist.'
+            nullVideoImgContainer.appendChild(nullVideo)
+        }
+    } else {
+        const skinImgContainer = document.createElement('div')
+        skinImgContainer.classList.add('skin-full-image-container')
+        specificSkinContainer.appendChild(skinImgContainer)
+        const skinImg = document.createElement('img')
+        skinImg.classList.add('chroma-image')
+        skinImg.src = `${skin.displayIcon}`
+        skinImgContainer.appendChild(skinImg)
+        const nullVideoImgContainer = document.createElement('div')
+        nullVideoImgContainer.classList.add('null-image-container')
+        specificSkinContainer.appendChild(nullVideoImgContainer)
+        const nullVideoImg = document.createElement('img')
+        nullVideoImg.classList.add('null-image')
+        nullVideoImg.src = 'https://i.redd.it/h044s6irkmr81.png'
+        nullVideoImgContainer.appendChild(nullVideoImg)
+        const nullVideo = document.createElement('h3')
+        nullVideo.classList.add('text-center')
+        nullVideo.innerHTML = 'Sorry, video for this skin does not exist.'
+        nullVideoImgContainer.appendChild(nullVideo)
+    }
 }
 
 const pauseVideo = (skinVideo) => {
@@ -169,7 +200,8 @@ const getChromaData = (chroma) => {
         nullVideoImg.src = 'https://i.redd.it/h044s6irkmr81.png'
         chromaVideoContainer.appendChild(nullVideoImg)
         const nullVideo = document.createElement('h3')
-        nullVideo.innerHTML = 'Sorry, video for this skin does not exist'
+        nullVideo.classList.add('text-center')
+        nullVideo.innerHTML = 'Sorry, video for this skin does not exist';
         chromaVideoContainer.appendChild(nullVideo)
     }
 }

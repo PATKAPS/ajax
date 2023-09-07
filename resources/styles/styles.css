@@ -31,6 +31,16 @@
     align-items: center;
 }
 
+.h1-container {
+    position: absolute;
+    top: 30vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
 .landing-button {
     position: relative;
     border: none;
@@ -40,6 +50,12 @@
     height: 4rem;
     z-index: 1;
     margin: .5rem;
+}
+
+.landing-button:hover {
+    box-shadow: 0 0 1rem .5rem rgba(200, 200, 200, 0.9);
+    transition: all 0.5s ease;
+    cursor: pointer;
 }
 
 p {
@@ -56,10 +72,17 @@ p {
     right: 0;
     margin: 5vh auto;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    overflow-y: auto;
+}
+
+.weapon-container-header {
+    background-color: rgba(200, 200, 200, 0.9);
+    border-radius: 1rem;
+    height: fit-content;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 #specific-weapon-container {
@@ -78,37 +101,93 @@ p {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin-top: 1rem;
 }
 
 .weapon-name-container {
-    background-color: rgba(20, 20, 20, 0.9);
+    background-color: rgba(200, 200, 200, 0.9);
     border-radius: 1rem;
     height: fit-content;
     padding: 1rem;
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 h1 {
     color: white
 }
 .weapon-image-container {
-    background-color: rgba(20, 20, 20, 0.9);
+    background-color: rgba(200, 200, 200, 0.9);
     border-radius: 1rem;
-    margin: 1rem;
-    width: 80vw;
-    height: 15vh;
+    margin: .5rem;
+    width: 40vw;
+    height: 10vh;
     display: flex;
     justify-content: center;
     flex-basis: calc(100% / 2 - 3rem);
 }
 
+.weapon-image-container:hover {
+    cursor: pointer;
+}
+
 .weapon-image {
     width: 95%;
     object-fit: contain;
+    padding: 0.5rem 1rem;
+}
+
+#specific-skin-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    width: 90vw;
+    left: 0;
+    right: 0;
+    margin: 5vh auto;
+}
+
+#specific-chroma-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    width: 90vw;
+    left: 0;
+    right: 0;
+    margin: 5vh auto;
+}
+
+.skin-full-image-container {
+    background-color: rgba(200, 200, 200, 0.9);
+    border-radius: 1rem;
+    margin: .5rem;
+    width: 60vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+}
+
+.video-container {
+    background-color: rgba(200, 200, 200, 0.9);
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
     padding: 1rem;
+    width: 80vw;
+    max-height: 70vh;
+}
+
+.chroma-video {
+    width: 100%;
+    max-height: 100%;
 }
 
 #mobile-footer {

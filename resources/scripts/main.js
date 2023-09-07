@@ -162,7 +162,7 @@ const getSkinData = (skin) => {
         nullVideoImgContainer.appendChild(nullVideoImg)
         const nullVideo = document.createElement('h3')
         nullVideo.classList.add('text-center')
-        nullVideo.innerHTML = 'Sorry, video for this skin does not exist.'
+        nullVideo.innerHTML = 'Sorry, video for this skin does not exist in the API.'
         nullVideoImgContainer.appendChild(nullVideo)
     }
 }
@@ -181,10 +181,10 @@ const getChromaData = (chroma) => {
     chromaHeader.classList.add('weapon-name')
     chromaHeader.innerHTML = `${chroma.displayName}`
     chromaNameContainer.appendChild(chromaHeader)
+    if (chroma.streamedVideo) {
     const chromaVideoContainer = document.createElement('div')
     chromaVideoContainer.classList.add('video-container')
-    specificChromaContainer.appendChild(chromaVideoContainer)
-    if (chroma.streamedVideo) {
+    specificChromaContainer.appendChild(chromaVideoContainer)    
     const chromaVideo = document.createElement('video')
     chromaVideo.classList.add('chroma-video')
     chromaVideo.setAttribute('controls', true)
@@ -195,13 +195,16 @@ const getChromaData = (chroma) => {
     chromaVideoSource.src = `${chroma.streamedVideo}`
     chromaVideo.appendChild(chromaVideoSource)
     } else {
+        const nullVideoImgContainer = document.createElement('div')
+        nullVideoImgContainer.classList.add('null-image-container')
+        specificChromaContainer.appendChild(nullVideoImgContainer)
         const nullVideoImg = document.createElement('img')
-        nullVideoImg.classList.add('weapon-image')
+        nullVideoImg.classList.add('null-image')
         nullVideoImg.src = 'https://i.redd.it/h044s6irkmr81.png'
-        chromaVideoContainer.appendChild(nullVideoImg)
+        nullVideoImgContainer.appendChild(nullVideoImg)
         const nullVideo = document.createElement('h3')
         nullVideo.classList.add('text-center')
-        nullVideo.innerHTML = 'Sorry, video for this skin does not exist';
-        chromaVideoContainer.appendChild(nullVideo)
+        nullVideo.innerHTML = 'Sorry, video for this skin does not exist in the API.'
+        nullVideoImgContainer.appendChild(nullVideo)
     }
 }

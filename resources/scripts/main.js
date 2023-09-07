@@ -93,11 +93,32 @@ const getSkinData = (skin) => {
     skinHeader.innerHTML = `${skin.displayName}`
     weaponNameContainer.appendChild(skinHeader);
     const skinContainer = document.createElement('div')
-    skinContainer.classList.add('skin-container')
+    skinContainer.classList.add('chroma-container')
     specificSkinContainer.appendChild(skinContainer)
     const skinVideoContainer = document.createElement('div')
     skinVideoContainer.classList.add('video-container')
-    for (const chroma of skin.chromas) {
+    skinContainer.appendChild(skinVideoContainer)
+    const skinVideo = document.createElement('video')
+    skinVideo.classList.add('chroma-video')
+    skinVideo.setAttribute('controls', true)
+    skinVideo.setAttribute('autoplay', true)
+    skinVideo.volume = 0.25;
+    skinVideoContainer.appendChild(skinVideo)
+    const skinVideoSource = document.createElement('source')
+    skinVideoSource.src = `${skin.levels[(skin.levels.length - 1)].streamedVideo}`
+    skinVideo.appendChild(skinVideoSource)
+    // const chromaContainer = document.createElement('div')
+    // chromaContainer.classList.add('chroma-container')
+    // specificChromaContainer.appendChild(chromaContainer)
+    const chromaNameContainer = document.createElement('div')
+    chromaNameContainer.classList.add('weapon-name-container')
+    skinContainer.appendChild(chromaNameContainer)
+    const chromaName = document.createElement('h4')
+    chromaName.classList.add('weapon-name')
+    chromaName.innerHTML = `${skin.displayName} Chromas`;
+    chromaNameContainer.appendChild(chromaName)
+    for (let i = 1; i < skin.chromas.length; i++) {
+        let chroma = skin.chromas[i]
         const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('skin-full-image-container')
         skinContainer.appendChild(skinImgContainer)
@@ -108,8 +129,15 @@ const getSkinData = (skin) => {
         skinImgContainer.addEventListener('click', () => {
             getChromaData(chroma)
         })
+        skinImgContainer.addEventListener('click', () => {
+            pauseVideo(skinVideo)
+        })
     }
 
+}
+
+const pauseVideo = (skinVideo) => {
+    skinVideo.pause()
 }
 
 const getChromaData = (chroma) => {
@@ -128,7 +156,9 @@ const getChromaData = (chroma) => {
     if (chroma.streamedVideo) {
     const chromaVideo = document.createElement('video')
     chromaVideo.classList.add('chroma-video')
-    chromaVideo.setAttribute('controls', true);
+    chromaVideo.setAttribute('controls', true)
+    chromaVideo.setAttribute('autoplay', true)
+    chromaVideo.volume = 0.25;
     chromaVideoContainer.appendChild(chromaVideo)
     const chromaVideoSource = document.createElement('source')
     chromaVideoSource.src = `${chroma.streamedVideo}`

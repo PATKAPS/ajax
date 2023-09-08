@@ -115,9 +115,22 @@ const getSkinData = (skin) => {
     skinVideoContainer.appendChild(favoriteButtonContainer)
     const favoriteButton = document.createElement('i')
     favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl')
-    favoriteButtonContainer.appendChild(favoriteButton)
-    favoriteButtonContainer.addEventListener('click', (skin) => {
+    const removeFavoriteButton = document.createElement('i')
+    removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
+    if (favorites.indexOf(skin) === -1) {
+        favoriteButtonContainer.appendChild(favoriteButton)
+    } else {
+        favoriteButtonContainer.appendChild(removeFavoriteButton)
+    }
+    favoriteButton.addEventListener('click', () => {
         addToFavorites(skin)
+        favoriteButton.remove()
+        favoriteButtonContainer.appendChild(removeFavoriteButton)
+    })
+    removeFavoriteButton.addEventListener('click', () => {
+        removeFromFavorites(skin)
+        removeFavoriteButton.remove()
+        favoriteButtonContainer.appendChild(favoriteButton)
     })
     const skinVideo = document.createElement('video')
     skinVideo.classList.add('chroma-video')
@@ -181,9 +194,22 @@ const getSkinData = (skin) => {
         skinImgContainer.appendChild(favoriteButtonContainer)
         const favoriteButton = document.createElement('i')
         favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
-        favoriteButtonContainer.appendChild(favoriteButton)
-        favoriteButtonContainer.addEventListener('click', () => {
+        const removeFavoriteButton = document.createElement('i')
+        removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
+        if (favorites.indexOf(skin) === -1) {
+            favoriteButtonContainer.appendChild(favoriteButton)
+        } else {
+            favoriteButtonContainer.appendChild(removeFavoriteButton)
+        }
+        favoriteButton.addEventListener('click', () => {
             addToFavorites(skin)
+            favoriteButton.remove()
+            favoriteButtonContainer.appendChild(removeFavoriteButton)
+        })
+        removeFavoriteButton.addEventListener('click', () => {
+            removeFromFavorites(skin)
+            removeFavoriteButton.remove()
+            favoriteButtonContainer.appendChild(favoriteButton)
         })
         const nullVideoImgContainer = document.createElement('div')
         nullVideoImgContainer.classList.add('null-image-container')
@@ -231,9 +257,22 @@ const getChromaData = (chroma) => {
     chromaVideoContainer.appendChild(favoriteButtonContainer)
     const favoriteButton = document.createElement('i')
     favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl')
-    favoriteButtonContainer.appendChild(favoriteButton)
-    favoriteButtonContainer.addEventListener('click', () => {
-        addToFavorites(skin)
+    const removeFavoriteButton = document.createElement('i')
+    removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
+    if (favorites.indexOf(chroma) === -1) {
+        favoriteButtonContainer.appendChild(favoriteButton)
+    } else {
+        favoriteButtonContainer.appendChild(removeFavoriteButton)
+    }
+    favoriteButton.addEventListener('click', () => {
+        addToFavorites(chroma)
+        favoriteButton.remove()
+        favoriteButtonContainer.appendChild(removeFavoriteButton)
+    })
+    removeFavoriteButton.addEventListener('click', () => {
+        removeFromFavorites(chroma)
+        removeFavoriteButton.remove()
+        favoriteButtonContainer.appendChild(favoriteButton)
     })
     } else {
         const skinImgContainer = document.createElement('div')
@@ -248,9 +287,22 @@ const getChromaData = (chroma) => {
         skinImgContainer.appendChild(favoriteButtonContainer)
         const favoriteButton = document.createElement('i')
         favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
-        favoriteButtonContainer.appendChild(favoriteButton)
-        favoriteButtonContainer.addEventListener('click', () => {
-            addToFavorites(skin)
+        const removeFavoriteButton = document.createElement('i')
+        removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
+        if (favorites.indexOf(chroma) === -1) {
+            favoriteButtonContainer.appendChild(favoriteButton)
+        } else {
+            favoriteButtonContainer.appendChild(removeFavoriteButton)
+        }
+        favoriteButton.addEventListener('click', () => {
+            addToFavorites(chroma)
+            favoriteButton.remove()
+            favoriteButtonContainer.appendChild(removeFavoriteButton)
+        })
+        removeFavoriteButton.addEventListener('click', () => {
+            removeFromFavorites(chroma)
+            removeFavoriteButton.remove()
+            favoriteButtonContainer.appendChild(favoriteButton)
         })
         const nullVideoImgContainer = document.createElement('div')
         nullVideoImgContainer.classList.add('null-image-container')
@@ -266,6 +318,12 @@ const getChromaData = (chroma) => {
     }
 }
 
-// const addToFavorites = () => {
+const addToFavorites = (skin) => {
+    favorites.push(skin);
+    console.log(favorites)
+}
 
-// }
+const removeFromFavorites = (skin) => {
+    favorites.splice(favorites.indexOf(skin), 1)
+    console.log(favorites)
+}

@@ -6,6 +6,8 @@ const specificSkinContainer = document.getElementById('specific-skin-container')
 const specificChromaContainer = document.getElementById('specific-chroma-container')
 const landingContainer = document.getElementById('landing-container')
 const homeButton = document.getElementById('home-button')
+const myFavoritesButton = document.getElementById('my-favorites-button')
+const myFavorites = document.getElementById('my-favorites')
 const favorites = []
 
 const enterSite = () => {
@@ -25,9 +27,51 @@ const goHome = () => {
     specificSkinContainer.replaceChildren();
     specificChromaContainer.classList.add('hidden')
     specificChromaContainer.replaceChildren();
+    myFavorites.classList.add('hidden')
+    myFavorites.replaceChildren();
 }
 
 homeButton.addEventListener('click', goHome);
+
+const goToFavorites = () => {
+    myFavorites.classList.remove('hidden')
+    weaponContainer.classList.add('hidden')
+    specificWeaponContainer.classList.add('hidden')
+    specificWeaponContainer.replaceChildren();
+    specificSkinContainer.classList.add('hidden')
+    specificSkinContainer.replaceChildren();
+    specificChromaContainer.classList.add('hidden')
+    specificChromaContainer.replaceChildren();
+    const myFavoritesHeaderContainer = document.createElement('div')
+    myFavoritesHeaderContainer.classList.add('weapon-name-container')
+    myFavorites.appendChild(myFavoritesHeaderContainer)
+    const myFavoritesHeader = document.createElement('h2')
+    myFavoritesHeader.innerHTML = 'My Favorites';
+    myFavoritesHeaderContainer.appendChild(myFavoritesHeader);
+    const myFavoritesContainer = document.createElement('div')
+    myFavoritesContainer.classList.add('skin-container')
+    myFavorites.appendChild(myFavoritesContainer)
+    for (const favorite of favorites)
+        if (favorite.fullRender) {
+            const weaponImgContainer = document.createElement('div')
+            weaponImgContainer.classList.add('weapon-image-container')
+            myFavoritesContainer.appendChild(weaponImgContainer)
+            const weaponImg = document.createElement('img')
+            weaponImg.classList.add('weapon-image')
+            weaponImg.src = `${favorite.fullRender}`
+            weaponImgContainer.appendChild(weaponImg)
+        } else {
+            const weaponImgContainer = document.createElement('div')
+            weaponImgContainer.classList.add('weapon-image-container')
+            myFavoritesContainer.appendChild(weaponImgContainer)
+            const weaponImg = document.createElement('img')
+            weaponImg.classList.add('weapon-image')
+            weaponImg.src = `${favorite.chromas[0].fullRender}`
+            weaponImgContainer.appendChild(weaponImg)
+        }
+}
+
+myFavoritesButton.addEventListener('click', goToFavorites)
 
 const baseUrl = 'https://valorant-api.com/v1';
 
@@ -81,13 +125,13 @@ const getSpecificWeaponData = (weapon) => {
     skinsContainer.classList.add('skin-container');
     specificWeaponContainer.appendChild(skinsContainer);
     for (const skin of weapon.skins) {
-        if (skin.contentTierUuid && skin.displayIcon) {
+        if (skin.contentTierUuid && skin.chromas[0].fullRender) {
         const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('weapon-image-container')
         skinsContainer.appendChild(skinImgContainer)
         const skinImg = document.createElement('img')
         skinImg.classList.add('weapon-image')
-        skinImg.src = `${skin.displayIcon}`
+        skinImg.src = `${skin.chromas[0].fullRender}`
         skinImgContainer.appendChild(skinImg)
         skinImgContainer.addEventListener('click', () => {
             getSkinData(skin)
@@ -187,7 +231,7 @@ const getSkinData = (skin) => {
         specificSkinContainer.appendChild(skinImgContainer)
         const skinImg = document.createElement('img')
         skinImg.classList.add('chroma-image')
-        skinImg.src = `${skin.displayIcon}`
+        skinImg.src = `${skin.chromas[0].fullRender}`
         skinImgContainer.appendChild(skinImg)
         const favoriteButtonContainer = document.createElement('div')
         favoriteButtonContainer.classList.add('favorite-button-container-alt')
@@ -280,7 +324,7 @@ const getChromaData = (chroma) => {
         specificChromaContainer.appendChild(skinImgContainer)
         const skinImg = document.createElement('img')
         skinImg.classList.add('chroma-image')
-        skinImg.src = `${chroma.displayIcon}`
+        skinImg.src = `${chroma.fullRender}`
         skinImgContainer.appendChild(skinImg)
         const favoriteButtonContainer = document.createElement('div')
         favoriteButtonContainer.classList.add('favorite-button-container-alt')
@@ -327,3 +371,4 @@ const removeFromFavorites = (skin) => {
     favorites.splice(favorites.indexOf(skin), 1)
     console.log(favorites)
 }
+

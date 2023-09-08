@@ -53,10 +53,10 @@ const populateWeaponContainer = (weaponData) => {
     weaponContainer.appendChild(weaponsContainer)
 
     for (const weapon of weaponData) {
-        let weaponImgContainer = document.createElement('div');
-        weaponImgContainer.classList.add('weapon-image-container', `${weapon.displayName}`);
+        const weaponImgContainer = document.createElement('div');
+        weaponImgContainer.classList.add('weapon-image-container');
         weaponsContainer.appendChild(weaponImgContainer);
-        let weaponImg = document.createElement('img');
+        const weaponImg = document.createElement('img');
         weaponImg.classList.add('weapon-image');
         weaponImg.src = `${weapon.displayIcon}`;
         weaponImgContainer.appendChild(weaponImg);
@@ -116,7 +116,7 @@ const getSkinData = (skin) => {
     const favoriteButton = document.createElement('i')
     favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl')
     favoriteButtonContainer.appendChild(favoriteButton)
-    favoriteButtonContainer.addEventListener('click', () => {
+    favoriteButtonContainer.addEventListener('click', (skin) => {
         addToFavorites(skin)
     })
     const skinVideo = document.createElement('video')

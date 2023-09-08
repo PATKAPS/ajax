@@ -103,7 +103,7 @@ p {
 .weapon-name-container {
     background-color: rgba(200, 200, 200, 0.9);
     border-radius: 1rem;
-    height: fit-content;
+    width: fit-content;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     display: flex;
@@ -112,8 +112,10 @@ p {
 }
 
 h1 {
+    font-size: clamp(1rem, 10vw, 5rem);
     color: white
 }
+
 .weapon-image-container {
     background-color: rgba(200, 200, 200, 0.9);
     border-radius: 1rem;
@@ -132,11 +134,13 @@ h1 {
 
 .weapon-image {
     width: 100%;
+    max-width: 512px;
     object-fit: contain;
 }
 
 .chroma-image {
     width: 100%;
+    max-width: 512px;
     object-fit: contain;
 }
 
@@ -169,7 +173,7 @@ h1 {
     background-color: rgba(200, 200, 200, 0.9);
     position: relative;
     border-radius: 1rem;
-    margin: 1vw;
+    margin-bottom: 1rem;
     padding: 0.5rem;
     width: 75vw;
     max-width: 512px;
@@ -183,7 +187,8 @@ h1 {
     border-radius: 1rem;
     margin-bottom: 1rem;
     padding: 0.5rem;
-    height: 50vh;
+    width: 75vw;
+    max-width: 512px;
     display: flex;
     justify-content: center;
 }
@@ -234,24 +239,20 @@ h1 {
 .favorite-button-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     position: absolute;
     right: 1.3rem;
     top: 1rem;
-    height: 10vw;
-    width: 10vw;
     z-index: 1;
 }
 
 .favorite-button-container-alt {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     position: absolute;
-    right: 0rem;
-    top: 0rem;
-    height: 10vw;
-    width: 10vw;
+    right: 0.5rem;
+    top: 0.5rem;
     z-index: 1;
 }
 
@@ -266,14 +267,14 @@ h1 {
 .fa-2xl {
     color: rgb(215, 25, 25);
     object-fit: contain;
-    font-size: 10vw;
+    font-size: clamp(1rem, 10vw, 5rem);
     line-height: normal;
 }
 
 .fa-xl {
     color: rgb(215, 25, 25);
     object-fit: contain;
-    font-size: 5vw;
+    font-size: clamp(1rem, 10vw, 5rem);
     line-height: normal;
 }
 

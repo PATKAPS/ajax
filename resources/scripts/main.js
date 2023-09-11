@@ -156,6 +156,15 @@ const getSkinData = (skin) => {
     const skinVideoContainer = document.createElement('div')
     skinVideoContainer.classList.add('video-container')
     specificSkinContainer.appendChild(skinVideoContainer)
+    
+    const skinVideo = document.createElement('video')
+    skinVideo.classList.add('chroma-video')
+    skinVideo.setAttribute('controls', true)
+    skinVideo.setAttribute('autoplay', true)
+    skinVideo.volume = 0.25;
+    skinVideoContainer.appendChild(skinVideo)
+    const skinVideoSource = document.createElement('source')
+
     const favoriteButtonContainer = document.createElement('div')
     favoriteButtonContainer.classList.add('favorite-button-container')
     skinVideoContainer.appendChild(favoriteButtonContainer)
@@ -178,13 +187,6 @@ const getSkinData = (skin) => {
         removeFavoriteButton.remove()
         favoriteButtonContainer.appendChild(favoriteButton)
     })
-    const skinVideo = document.createElement('video')
-    skinVideo.classList.add('chroma-video')
-    skinVideo.setAttribute('controls', true)
-    skinVideo.setAttribute('autoplay', true)
-    skinVideo.volume = 0.25;
-    skinVideoContainer.appendChild(skinVideo)
-    const skinVideoSource = document.createElement('source')
     skinVideoSource.src = `${skin.levels[(skin.levels.length - 1)].streamedVideo}`
     skinVideo.appendChild(skinVideoSource)
     const skinContainer = document.createElement('div')

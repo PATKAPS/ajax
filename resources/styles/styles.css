@@ -64,11 +64,11 @@ p {
 
 #weapon-container {
     position: absolute;
-    height: 85vh;
+    height: 91vh;
     width: 90vw;
     left: 0;
     right: 0;
-    margin: 5vh auto;
+    margin: 1rem auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,11 +79,23 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 85vh;
+    height: 91vh;
     width: 90vw;
     left: 0;
     right: 0;
-    margin: 5vh auto;
+    margin: 1rem auto;
+}
+
+#specific-skin-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 91vh;
+    width: 90vw;
+    left: 0;
+    right: 0;
+    margin: 1rem auto;
 }
 
 .skin-container {
@@ -92,13 +104,16 @@ p {
     align-items: center;
     overflow-y: auto;
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .chroma-container {
     display: flex;
-    width: 50vw;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
+    width: 100%;
+    margin-bottom: 1rem;
 }
 
 .weapon-name-container {
@@ -121,7 +136,7 @@ h1 {
     background-color: rgba(200, 200, 200, 0.9);
     border-radius: 1rem;
     width: 90%;
-    height: 20vw;
+    height: 4rem;
     margin: .5rem;
     padding: 0.5rem;
     display: flex;
@@ -142,19 +157,6 @@ h1 {
     width: 100%;
     max-width: 512px;
     object-fit: contain;
-}
-
-#specific-skin-container {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 85vh;
-    width: 90vw;
-    left: 0;
-    right: 0;
-    margin: 5vh auto;
-    overflow-y: scroll;
 }
 
 #specific-chroma-container {
@@ -224,6 +226,7 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 1rem;
 }
 
 .null-image {
@@ -261,6 +264,17 @@ h1 {
     width: 100%;
     justify-content: flex-start;
     padding: .25rem
+}
+
+.back-container {
+    background-color: rgba(200, 200, 200, 0.9);
+    border-radius: 1rem;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .favorite-button-container-alt {

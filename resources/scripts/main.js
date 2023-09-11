@@ -101,6 +101,26 @@ const goToFavorites = () => {
 
 myFavoritesButton.addEventListener('click', goToFavorites)
 
+const createBackButton = (parentContainer, weaponOrSkin, currentPage, previousPage) => {
+    const backContainer = document.createElement('div')
+    backContainer.classList.add('back-container')
+    parentContainer.appendChild(backContainer)
+    const backText = document.createElement('h3')
+    if (currentPage === specificWeaponContainer) {
+        backText.innerHTML = 'Back to weapons'
+    } else {
+    backText.innerHTML = `Back to ${weaponOrSkin.displayName}`
+    }
+    backContainer.appendChild(backText)
+    backContainer.addEventListener('click', () => {
+        currentPage.classList.add('hidden')
+        previousPage.classList.remove('hidden')
+        currentPage.replaceChildren()
+    })
+}
+
+
+
 const baseUrl = 'https://valorant-api.com/v1';
 
 const getWeaponData = async () => {
@@ -162,13 +182,14 @@ const getSpecificWeaponData = (weapon) => {
         skinImg.src = `${skin.chromas[0].fullRender}`
         skinImgContainer.appendChild(skinImg)
         skinImgContainer.addEventListener('click', () => {
-            getSkinData(skin)
+            getSkinData(skin, weapon)
         })
         }
     }
+    createBackButton(specificWeaponContainer, weapon, specificWeaponContainer, weaponContainer)
 }
 
-const getSkinData = (skin) => {
+const getSkinData = (skin, weapon) => {
     specificWeaponContainer.classList.add('hidden')
     specificSkinContainer.classList.remove('hidden')
     const weaponNameContainer = document.createElement('div');
@@ -214,12 +235,12 @@ const getSkinData = (skin) => {
     })
     skinVideoSource.src = `${skin.levels[(skin.levels.length - 1)].streamedVideo}`
     skinVideo.appendChild(skinVideoSource)
+    const chromaNameContainer = document.createElement('div')
+    chromaNameContainer.classList.add('weapon-name-container')
+    specificSkinContainer.appendChild(chromaNameContainer)
     const skinContainer = document.createElement('div')
     skinContainer.classList.add('chroma-container')
     specificSkinContainer.appendChild(skinContainer)
-    const chromaNameContainer = document.createElement('div')
-    chromaNameContainer.classList.add('weapon-name-container')
-    skinContainer.appendChild(chromaNameContainer)
     const chromaName = document.createElement('h3')
     chromaName.classList.add('weapon-name')
     chromaName.innerHTML = `${skin.displayName} Chromas`;
@@ -235,7 +256,7 @@ const getSkinData = (skin) => {
         skinImg.src = `${chroma.fullRender}`
         skinImgContainer.appendChild(skinImg)
         skinImgContainer.addEventListener('click', () => {
-            getChromaData(chroma)
+            getChromaData(chroma, skin)
         })
         skinImgContainer.addEventListener('click', () => {
             pauseVideo(skinVideo)
@@ -296,13 +317,14 @@ const getSkinData = (skin) => {
         nullVideo.innerHTML = 'Sorry, video for this skin does not exist in the API.'
         nullVideoImgContainer.appendChild(nullVideo)
     }
+    createBackButton(specificSkinContainer, weapon, specificSkinContainer, specificWeaponContainer)
 }
 
 const pauseVideo = (skinVideo) => {
     skinVideo.pause()
 }
 
-const getChromaData = (chroma) => {
+const getChromaData = (chroma, skin) => {
     specificSkinContainer.classList.add('hidden')
     specificChromaContainer.classList.remove('hidden')
     const chromaNameContainer = document.createElement('div')
@@ -388,6 +410,7 @@ const getChromaData = (chroma) => {
         nullVideo.innerHTML = 'Sorry, video for this skin does not exist in the API.'
         nullVideoImgContainer.appendChild(nullVideo)
     }
+    createBackButton(specificChromaContainer, skin, specificChromaContainer, specificSkinContainer)
 }
 
 const addToFavorites = (skin) => {

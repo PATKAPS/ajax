@@ -34,6 +34,7 @@ const goHome = () => {
 homeButton.addEventListener('click', goHome);
 
 const goToFavorites = () => {
+    if (myFavorites.classList.contains('hidden')) {
     myFavorites.classList.remove('hidden')
     weaponContainer.classList.add('hidden')
     specificWeaponContainer.classList.add('hidden')
@@ -69,6 +70,7 @@ const goToFavorites = () => {
             weaponImg.src = `${favorite.chromas[0].fullRender}`
             weaponImgContainer.appendChild(weaponImg)
         }
+    }
 }
 
 myFavoritesButton.addEventListener('click', goToFavorites)

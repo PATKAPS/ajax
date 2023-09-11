@@ -88,9 +88,10 @@ p {
 
 .skin-container {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     overflow-y: auto;
+    width: 100%;
 }
 
 .chroma-container {
@@ -119,13 +120,12 @@ h1 {
 .weapon-image-container {
     background-color: rgba(200, 200, 200, 0.9);
     border-radius: 1rem;
+    width: 90%;
+    height: 20vw;
     margin: .5rem;
-    height: 10vh;
-    width: 30vw;
     padding: 0.5rem;
     display: flex;
     justify-content: center;
-    flex-basis: calc(100% / 2 - 3rem);
 }
 
 .weapon-image-container:hover {
@@ -192,6 +192,8 @@ h1 {
     max-width: 512px;
     display: flex;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .skin-full-image-container-no-click {

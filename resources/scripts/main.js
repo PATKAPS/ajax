@@ -55,20 +55,46 @@ const goToFavorites = () => {
     for (const favorite of favorites)
         if (favorite.fullRender) {
             const weaponImgContainer = document.createElement('div')
-            weaponImgContainer.classList.add('weapon-image-container')
+            weaponImgContainer.classList.add('skin-full-image-container')
             myFavoritesContainer.appendChild(weaponImgContainer)
             const weaponImg = document.createElement('img')
             weaponImg.classList.add('weapon-image')
             weaponImg.src = `${favorite.fullRender}`
             weaponImgContainer.appendChild(weaponImg)
+            const favoriteButtonContainer = document.createElement('div')
+            favoriteButtonContainer.classList.add('favorite-button-container-alt')
+            weaponImgContainer.appendChild(favoriteButtonContainer)
+            const favoriteButton = document.createElement('i')
+            favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
+            const removeFavoriteButton = document.createElement('i')
+            removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
+            favoriteButtonContainer.appendChild(removeFavoriteButton)
+            removeFavoriteButton.addEventListener('click', () => {
+                removeFromFavorites()
+                removeFavoriteButton.remove()
+                weaponImgContainer.remove()
+            })
         } else {
             const weaponImgContainer = document.createElement('div')
-            weaponImgContainer.classList.add('weapon-image-container')
+            weaponImgContainer.classList.add('skin-full-image-container')
             myFavoritesContainer.appendChild(weaponImgContainer)
             const weaponImg = document.createElement('img')
             weaponImg.classList.add('weapon-image')
             weaponImg.src = `${favorite.chromas[0].fullRender}`
             weaponImgContainer.appendChild(weaponImg)
+            const favoriteButtonContainer = document.createElement('div')
+            favoriteButtonContainer.classList.add('favorite-button-container-alt')
+            weaponImgContainer.appendChild(favoriteButtonContainer)
+            const favoriteButton = document.createElement('i')
+            favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
+            const removeFavoriteButton = document.createElement('i')
+            removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
+            favoriteButtonContainer.appendChild(removeFavoriteButton)
+            removeFavoriteButton.addEventListener('click', () => {
+                removeFromFavorites()
+                removeFavoriteButton.remove()
+                weaponImgContainer.remove()
+            })
         }
     }
 }
@@ -129,7 +155,7 @@ const getSpecificWeaponData = (weapon) => {
     for (const skin of weapon.skins) {
         if (skin.contentTierUuid && skin.chromas[0].fullRender) {
         const skinImgContainer = document.createElement('div')
-        skinImgContainer.classList.add('weapon-image-container')
+        skinImgContainer.classList.add('skin-full-image-container')
         skinsContainer.appendChild(skinImgContainer)
         const skinImg = document.createElement('img')
         skinImg.classList.add('weapon-image')
@@ -160,7 +186,6 @@ const getSkinData = (skin) => {
     const skinVideo = document.createElement('video')
     skinVideo.classList.add('chroma-video')
     skinVideo.setAttribute('controls', true)
-    skinVideo.setAttribute('autoplay', true)
     skinVideo.volume = 0.25;
     skinVideoContainer.appendChild(skinVideo)
     const skinVideoSource = document.createElement('source')
@@ -294,7 +319,6 @@ const getChromaData = (chroma) => {
     const chromaVideo = document.createElement('video')
     chromaVideo.classList.add('chroma-video')
     chromaVideo.setAttribute('controls', true)
-    chromaVideo.setAttribute('autoplay', true)
     chromaVideo.volume = 0.25;
     chromaVideoContainer.appendChild(chromaVideo)
     const chromaVideoSource = document.createElement('source')

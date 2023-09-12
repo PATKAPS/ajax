@@ -251,7 +251,8 @@ h1 {
     align-items: center;
     justify-content: center;
     padding: 1rem;
-    width: 50vw;
+    width: 75vw;
+    max-width: 740px;
     margin-bottom: 1rem;
 }
 
@@ -265,6 +266,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    z-index: 1;
 }
 
 .back-container {

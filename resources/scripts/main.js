@@ -43,6 +43,7 @@ const goToFavorites = () => {
     specificSkinContainer.replaceChildren();
     specificChromaContainer.classList.add('hidden')
     specificChromaContainer.replaceChildren();
+    myFavorites.replaceChildren();
     const myFavoritesHeaderContainer = document.createElement('div')
     myFavoritesHeaderContainer.classList.add('weapon-name-container')
     myFavorites.appendChild(myFavoritesHeaderContainer)
@@ -69,10 +70,14 @@ const goToFavorites = () => {
             const removeFavoriteButton = document.createElement('i')
             removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
             favoriteButtonContainer.appendChild(removeFavoriteButton)
-            removeFavoriteButton.addEventListener('click', () => {
+            removeFavoriteButton.addEventListener('click', (event) => {
                 removeFromFavorites()
                 removeFavoriteButton.remove()
                 weaponImgContainer.remove()
+                event.stopPropagation()
+            })
+            weaponImgContainer.addEventListener('click', () => {
+                getChromaData(favorite)
             })
         } else {
             const weaponImgContainer = document.createElement('div')
@@ -90,10 +95,14 @@ const goToFavorites = () => {
             const removeFavoriteButton = document.createElement('i')
             removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
             favoriteButtonContainer.appendChild(removeFavoriteButton)
-            removeFavoriteButton.addEventListener('click', () => {
+            removeFavoriteButton.addEventListener('click', (event) => {
                 removeFromFavorites()
                 removeFavoriteButton.remove()
                 weaponImgContainer.remove()
+                event.stopPropagation()
+            })
+            weaponImgContainer.addEventListener('click', () => {
+                getSkinData(favorite)
             })
         }
     }
@@ -108,8 +117,10 @@ const createBackButton = (parentContainer, weaponOrSkin, currentPage, previousPa
     const backText = document.createElement('h3')
     if (currentPage === specificWeaponContainer) {
         backText.innerHTML = 'Back to weapons'
-    } else {
+    } else if (weaponOrSkin) {
     backText.innerHTML = `Back to ${weaponOrSkin.displayName}`
+    } else {
+        backText.innerHTML = 'Back to Favorites'
     }
     backContainer.appendChild(backText)
     backContainer.addEventListener('click', () => {
@@ -189,7 +200,8 @@ const getSpecificWeaponData = (weapon) => {
     createBackButton(specificWeaponContainer, weapon, specificWeaponContainer, weaponContainer)
 }
 
-const getSkinData = (skin, weapon) => {
+const getSkinData = (skin, weapon, favorite) => {
+    myFavorites.classList.add('hidden')
     specificWeaponContainer.classList.add('hidden')
     specificSkinContainer.classList.remove('hidden')
     const weaponNameContainer = document.createElement('div');
@@ -325,14 +337,19 @@ const getSkinData = (skin, weapon) => {
         nullVideo.innerHTML = 'Sorry, video for this skin does not exist in the API.'
         nullVideoImgContainer.appendChild(nullVideo)
     }
+    if (weapon) {
     createBackButton(specificSkinContainer, weapon, specificSkinContainer, specificWeaponContainer)
+    } else {
+        createBackButton(specificSkinContainer, favorite, specificSkinContainer, myFavorites)
+    }
 }
 
 const pauseVideo = (skinVideo) => {
     skinVideo.pause()
 }
 
-const getChromaData = (chroma, skin) => {
+const getChromaData = (chroma, skin, favorite) => {
+    myFavorites.classList.add('hidden')
     specificSkinContainer.classList.add('hidden')
     specificChromaContainer.classList.remove('hidden')
     const chromaNameContainer = document.createElement('div')
@@ -399,7 +416,11 @@ const getChromaData = (chroma, skin) => {
         nullVideo.innerHTML = 'Sorry, video for this skin does not exist in the API.'
         nullVideoImgContainer.appendChild(nullVideo)
     }
+    if (skin) {
     createBackButton(specificChromaContainer, skin, specificChromaContainer, specificSkinContainer)
+    } else {
+    createBackButton(specificChromaContainer, favorite, specificChromaContainer, myFavorites)
+    }
 }
 
 const addToFavorites = (skin) => {

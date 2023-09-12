@@ -8,7 +8,9 @@ const landingContainer = document.getElementById('landing-container')
 const homeButton = document.getElementById('home-button')
 const myFavoritesButton = document.getElementById('my-favorites-button')
 const myFavorites = document.getElementById('my-favorites')
-let favorites = []
+const favorites = []
+window.localStorage.setItem('favorites', JSON.stringify(favorites))
+
 
 const enterSite = () => {
     landingContainer.classList.add('hidden');
@@ -34,6 +36,7 @@ const goHome = () => {
 homeButton.addEventListener('click', goHome);
 
 const goToFavorites = () => {
+    const storedFavorites = JSON.parse(localStorage.getItem('favorites'))
     if (myFavorites.classList.contains('hidden')) {
     myFavorites.classList.remove('hidden')
     weaponContainer.classList.add('hidden')
@@ -53,7 +56,7 @@ const goToFavorites = () => {
     const myFavoritesContainer = document.createElement('div')
     myFavoritesContainer.classList.add('skin-container')
     myFavorites.appendChild(myFavoritesContainer)
-    for (const favorite of favorites)
+    for (const favorite of storedFavorites)
         if (favorite.fullRender) {
             const weaponImgContainer = document.createElement('div')
             weaponImgContainer.classList.add('weapon-image-container')
@@ -425,11 +428,13 @@ const getChromaData = (chroma, skin, favorite) => {
 
 const addToFavorites = (skin) => {
     favorites.push(skin);
+    window.localStorage.setItem('favorites', JSON.stringify(favorites))
     console.log(favorites)
 }
 
 const removeFromFavorites = (skin) => {
     favorites.splice(favorites.indexOf(skin), 1)
+    window.localStorage.setItem('favorites', JSON.stringify(favorites))
     console.log(favorites)
 }
 

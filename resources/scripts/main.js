@@ -55,14 +55,14 @@ const goToFavorites = () => {
     for (const favorite of favorites)
         if (favorite.fullRender) {
             const weaponImgContainer = document.createElement('div')
-            weaponImgContainer.classList.add('skin-full-image-container')
+            weaponImgContainer.classList.add('weapon-image-container')
             myFavoritesContainer.appendChild(weaponImgContainer)
             const weaponImg = document.createElement('img')
             weaponImg.classList.add('weapon-image')
             weaponImg.src = `${favorite.fullRender}`
             weaponImgContainer.appendChild(weaponImg)
             const favoriteButtonContainer = document.createElement('div')
-            favoriteButtonContainer.classList.add('favorite-button-container-alt')
+            favoriteButtonContainer.classList.add('favorite-button-container')
             weaponImgContainer.appendChild(favoriteButtonContainer)
             const favoriteButton = document.createElement('i')
             favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
@@ -76,14 +76,14 @@ const goToFavorites = () => {
             })
         } else {
             const weaponImgContainer = document.createElement('div')
-            weaponImgContainer.classList.add('skin-full-image-container')
+            weaponImgContainer.classList.add('weapon-image-container')
             myFavoritesContainer.appendChild(weaponImgContainer)
             const weaponImg = document.createElement('img')
             weaponImg.classList.add('weapon-image')
             weaponImg.src = `${favorite.chromas[0].fullRender}`
             weaponImgContainer.appendChild(weaponImg)
             const favoriteButtonContainer = document.createElement('div')
-            favoriteButtonContainer.classList.add('favorite-button-container-alt')
+            favoriteButtonContainer.classList.add('favorite-button-container')
             weaponImgContainer.appendChild(favoriteButtonContainer)
             const favoriteButton = document.createElement('i')
             favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
@@ -200,81 +200,89 @@ const getSkinData = (skin, weapon) => {
     skinHeader.innerHTML = `${skin.displayName}`
     weaponNameContainer.appendChild(skinHeader);
     if (skin.levels[(skin.levels.length - 1)].streamedVideo) {
-    const skinVideoContainer = document.createElement('div')
-    skinVideoContainer.classList.add('video-container')
-    specificSkinContainer.appendChild(skinVideoContainer)
-    
-    const skinVideo = document.createElement('video')
-    skinVideo.classList.add('chroma-video')
-    skinVideo.setAttribute('controls', true)
-    skinVideo.volume = 0.25;
-    skinVideoContainer.appendChild(skinVideo)
-    const skinVideoSource = document.createElement('source')
-
-    const favoriteButtonContainer = document.createElement('div')
-    favoriteButtonContainer.classList.add('favorite-button-container')
-    skinVideoContainer.appendChild(favoriteButtonContainer)
-    const favoriteButton = document.createElement('i')
-    favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl')
-    const removeFavoriteButton = document.createElement('i')
-    removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
-    if (favorites.indexOf(skin) === -1) {
-        favoriteButtonContainer.appendChild(favoriteButton)
-    } else {
-        favoriteButtonContainer.appendChild(removeFavoriteButton)
-    }
-    favoriteButton.addEventListener('click', () => {
-        addToFavorites(skin)
-        favoriteButton.remove()
-        favoriteButtonContainer.appendChild(removeFavoriteButton)
-    })
-    removeFavoriteButton.addEventListener('click', () => {
-        removeFromFavorites(skin)
-        removeFavoriteButton.remove()
-        favoriteButtonContainer.appendChild(favoriteButton)
-    })
-    skinVideoSource.src = `${skin.levels[(skin.levels.length - 1)].streamedVideo}`
-    skinVideo.appendChild(skinVideoSource)
-    const chromaNameContainer = document.createElement('div')
-    chromaNameContainer.classList.add('weapon-name-container')
-    specificSkinContainer.appendChild(chromaNameContainer)
-    const skinContainer = document.createElement('div')
-    skinContainer.classList.add('chroma-container')
-    specificSkinContainer.appendChild(skinContainer)
-    const chromaName = document.createElement('h3')
-    chromaName.classList.add('weapon-name')
-    chromaName.innerHTML = `${skin.displayName} Chromas`;
-    chromaNameContainer.appendChild(chromaName)
-    if (skin.chromas.length > 1) {
-    for (let i = 1; i < skin.chromas.length; i++) {
-        let chroma = skin.chromas[i]
+        const skinContainer = document.createElement('div')
+        skinContainer.classList.add('skin-container')
+        specificSkinContainer.appendChild(skinContainer)
         const skinImgContainer = document.createElement('div')
-        skinImgContainer.classList.add('skin-full-image-container')
+        skinImgContainer.classList.add('skin-full-image-container-no-click')
         skinContainer.appendChild(skinImgContainer)
         const skinImg = document.createElement('img')
         skinImg.classList.add('chroma-image')
-        skinImg.src = `${chroma.fullRender}`
+        skinImg.src = `${skin.chromas[0].fullRender}`
         skinImgContainer.appendChild(skinImg)
-        skinImgContainer.addEventListener('click', () => {
-            getChromaData(chroma, skin)
-        })
-        skinImgContainer.addEventListener('click', () => {
-            pauseVideo(skinVideo)
-        })
-    }
+        const skinVideoContainer = document.createElement('div')
+        skinVideoContainer.classList.add('video-container')
+        skinContainer.appendChild(skinVideoContainer)
+        const skinVideo = document.createElement('video')
+        skinVideo.classList.add('chroma-video')
+        skinVideo.setAttribute('controls', true)
+        skinVideo.volume = 0.25;
+        skinVideoContainer.appendChild(skinVideo)
+        const skinVideoSource = document.createElement('source')
+        const favoriteButtonContainer = document.createElement('div')
+        favoriteButtonContainer.classList.add('favorite-button-container')
+        skinImgContainer.appendChild(favoriteButtonContainer)
+        const favoriteButton = document.createElement('i')
+        favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl')
+        const removeFavoriteButton = document.createElement('i')
+        removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
+        if (favorites.indexOf(skin) === -1) {
+            favoriteButtonContainer.appendChild(favoriteButton)
         } else {
-            const nullVideoImgContainer = document.createElement('div')
-            nullVideoImgContainer.classList.add('null-image-container')
-            skinContainer.appendChild(nullVideoImgContainer)
-            const nullVideoImg = document.createElement('img')
-            nullVideoImg.classList.add('null-image')
-            nullVideoImg.src = 'https://i.redd.it/h044s6irkmr81.png'
-            nullVideoImgContainer.appendChild(nullVideoImg)
-            const nullVideo = document.createElement('h3')
-            nullVideo.classList.add('text-center')
-            nullVideo.innerHTML = 'Sorry, chromas for this skin do not exist.'
-            nullVideoImgContainer.appendChild(nullVideo)
+            favoriteButtonContainer.appendChild(removeFavoriteButton)
         }
+        favoriteButton.addEventListener('click', () => {
+            addToFavorites(skin)
+            favoriteButton.remove()
+            favoriteButtonContainer.appendChild(removeFavoriteButton)
+        })
+        removeFavoriteButton.addEventListener('click', () => {
+            removeFromFavorites(skin)
+            removeFavoriteButton.remove()
+            favoriteButtonContainer.appendChild(favoriteButton)
+        })
+        skinVideoSource.src = `${skin.levels[(skin.levels.length - 1)].streamedVideo}`
+        skinVideo.appendChild(skinVideoSource)
+        const chromaNameContainer = document.createElement('div')
+        chromaNameContainer.classList.add('weapon-name-container')
+        skinContainer.appendChild(chromaNameContainer)
+        const chromaContainer = document.createElement('div')
+        chromaContainer.classList.add('chroma-container')
+        skinContainer.appendChild(chromaContainer)
+        const chromaName = document.createElement('h3')
+        chromaName.classList.add('weapon-name')
+        chromaName.innerHTML = `${skin.displayName} Chromas`;
+        chromaNameContainer.appendChild(chromaName)
+        if (skin.chromas.length > 1) {
+        for (let i = 1; i < skin.chromas.length; i++) {
+            let chroma = skin.chromas[i]
+            const skinImgContainer = document.createElement('div')
+            skinImgContainer.classList.add('skin-full-image-container')
+            chromaContainer.appendChild(skinImgContainer)
+            const skinImg = document.createElement('img')
+            skinImg.classList.add('chroma-image')
+            skinImg.src = `${chroma.fullRender}`
+            skinImgContainer.appendChild(skinImg)
+            skinImgContainer.addEventListener('click', () => {
+                getChromaData(chroma, skin)
+            })
+            skinImgContainer.addEventListener('click', () => {
+                pauseVideo(skinVideo)
+            })
+        }
+            } else {
+                const nullVideoImgContainer = document.createElement('div')
+                nullVideoImgContainer.classList.add('null-image-container')
+                chromaContainer.appendChild(nullVideoImgContainer)
+                const nullVideoImg = document.createElement('img')
+                nullVideoImg.classList.add('null-image')
+                nullVideoImg.src = 'https://i.redd.it/h044s6irkmr81.png'
+                nullVideoImgContainer.appendChild(nullVideoImg)
+                const nullVideo = document.createElement('h3')
+                nullVideo.classList.add('text-center')
+                nullVideo.innerHTML = 'Sorry, chromas for this skin do not exist.'
+                nullVideoImgContainer.appendChild(nullVideo)
+            }
     } else {
         const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('skin-full-image-container-no-click')
@@ -284,7 +292,7 @@ const getSkinData = (skin, weapon) => {
         skinImg.src = `${skin.chromas[0].fullRender}`
         skinImgContainer.appendChild(skinImg)
         const favoriteButtonContainer = document.createElement('div')
-        favoriteButtonContainer.classList.add('favorite-button-container-alt')
+        favoriteButtonContainer.classList.add('favorite-button-container')
         skinImgContainer.appendChild(favoriteButtonContainer)
         const favoriteButton = document.createElement('i')
         favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
@@ -334,50 +342,18 @@ const getChromaData = (chroma, skin) => {
     chromaHeader.classList.add('weapon-name')
     chromaHeader.innerHTML = `${chroma.displayName}`
     chromaNameContainer.appendChild(chromaHeader)
-    if (chroma.streamedVideo) {
-    const chromaVideoContainer = document.createElement('div')
-    chromaVideoContainer.classList.add('video-container')
-    specificChromaContainer.appendChild(chromaVideoContainer)    
-    const chromaVideo = document.createElement('video')
-    chromaVideo.classList.add('chroma-video')
-    chromaVideo.setAttribute('controls', true)
-    chromaVideo.volume = 0.25;
-    chromaVideoContainer.appendChild(chromaVideo)
-    const chromaVideoSource = document.createElement('source')
-    chromaVideoSource.src = `${chroma.streamedVideo}`
-    chromaVideo.appendChild(chromaVideoSource)
-    const favoriteButtonContainer = document.createElement('div')
-    favoriteButtonContainer.classList.add('favorite-button-container')
-    chromaVideoContainer.appendChild(favoriteButtonContainer)
-    const favoriteButton = document.createElement('i')
-    favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl')
-    const removeFavoriteButton = document.createElement('i')
-    removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
-    if (favorites.indexOf(chroma) === -1) {
-        favoriteButtonContainer.appendChild(favoriteButton)
-    } else {
-        favoriteButtonContainer.appendChild(removeFavoriteButton)
-    }
-    favoriteButton.addEventListener('click', () => {
-        addToFavorites(chroma)
-        favoriteButton.remove()
-        favoriteButtonContainer.appendChild(removeFavoriteButton)
-    })
-    removeFavoriteButton.addEventListener('click', () => {
-        removeFromFavorites(chroma)
-        removeFavoriteButton.remove()
-        favoriteButtonContainer.appendChild(favoriteButton)
-    })
-    } else {
-        const skinImgContainer = document.createElement('div')
+    const skinContainer = document.createElement('div')
+    skinContainer.classList.add('skin-container')
+    specificChromaContainer.appendChild(skinContainer)
+    const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('skin-full-image-container-no-click')
-        specificChromaContainer.appendChild(skinImgContainer)
+        skinContainer.appendChild(skinImgContainer)
         const skinImg = document.createElement('img')
         skinImg.classList.add('chroma-image')
         skinImg.src = `${chroma.fullRender}`
         skinImgContainer.appendChild(skinImg)
         const favoriteButtonContainer = document.createElement('div')
-        favoriteButtonContainer.classList.add('favorite-button-container-alt')
+        favoriteButtonContainer.classList.add('favorite-button-container')
         skinImgContainer.appendChild(favoriteButtonContainer)
         const favoriteButton = document.createElement('i')
         favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
@@ -398,6 +374,19 @@ const getChromaData = (chroma, skin) => {
             removeFavoriteButton.remove()
             favoriteButtonContainer.appendChild(favoriteButton)
         })
+    if (chroma.streamedVideo) {
+    const chromaVideoContainer = document.createElement('div')
+    chromaVideoContainer.classList.add('video-container')
+    skinContainer.appendChild(chromaVideoContainer)    
+    const chromaVideo = document.createElement('video')
+    chromaVideo.classList.add('chroma-video')
+    chromaVideo.setAttribute('controls', true)
+    chromaVideo.volume = 0.25;
+    chromaVideoContainer.appendChild(chromaVideo)
+    const chromaVideoSource = document.createElement('source')
+    chromaVideoSource.src = `${chroma.streamedVideo}`
+    chromaVideo.appendChild(chromaVideoSource)
+    } else {
         const nullVideoImgContainer = document.createElement('div')
         nullVideoImgContainer.classList.add('null-image-container')
         specificChromaContainer.appendChild(nullVideoImgContainer)

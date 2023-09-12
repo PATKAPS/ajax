@@ -98,6 +98,18 @@ p {
     margin: 1rem auto;
 }
 
+#specific-chroma-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 91vh;
+    width: 90vw;
+    left: 0;
+    right: 0;
+    margin: 1rem auto;
+}
+
 .skin-container {
     display: flex;
     flex-direction: column;
@@ -111,7 +123,6 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow-y: auto;
     width: 100%;
     margin-bottom: 1rem;
 }
@@ -134,13 +145,16 @@ h1 {
 
 .weapon-image-container {
     background-color: rgba(200, 200, 200, 0.9);
+    position: relative;
     border-radius: 1rem;
-    width: 90%;
-    height: 4rem;
-    margin: .5rem;
-    padding: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    width: 75vw;
+    max-width: 512px;
+    max-height: 10rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 
 .weapon-image-container:hover {
@@ -150,6 +164,7 @@ h1 {
 .weapon-image {
     width: 100%;
     max-width: 512px;
+    max-height: 100%;
     object-fit: contain;
 }
 
@@ -157,18 +172,6 @@ h1 {
     width: 100%;
     max-width: 512px;
     object-fit: contain;
-}
-
-#specific-chroma-container {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 85vh;
-    width: 90vw;
-    left: 0;
-    right: 0;
-    margin: 5vh auto;
 }
 
 #my-favorites {
@@ -189,12 +192,11 @@ h1 {
     position: relative;
     border-radius: 1rem;
     margin-bottom: 1rem;
-    padding: 0.5rem;
+    padding: 1rem;
     width: 75vw;
     max-width: 512px;
     display: flex;
-    justify-content: center;
-    display: flex;
+    justify-content: flex-end;
     flex-direction: column;
 }
 
@@ -203,11 +205,11 @@ h1 {
     position: relative;
     border-radius: 1rem;
     margin-bottom: 1rem;
-    padding: 0.5rem;
+    padding: 1rem;
     width: 75vw;
     max-width: 512px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     display: flex;
     flex-direction: column;
 }
@@ -248,8 +250,8 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 1rem 1rem 0rem 1rem;
-    width: 75vw;
+    padding: 1rem;
+    width: 50vw;
     margin-bottom: 1rem;
 }
 
@@ -259,11 +261,10 @@ h1 {
 }
 
 .favorite-button-container {
+    position: absolute;
     display: flex;
     align-items: center;
-    width: 100%;
     justify-content: flex-start;
-    padding: .25rem
 }
 
 .back-container {
@@ -277,15 +278,7 @@ h1 {
     margin-bottom: 1rem;
 }
 
-.favorite-button-container-alt {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    justify-content: flex-start;
-    padding: .25rem
-}
-
-.favorite-button-container-alt:hover{
+.back-container:hover {
     cursor: pointer;
 }
 

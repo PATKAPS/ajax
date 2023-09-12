@@ -433,13 +433,13 @@ const getChromaData = (chroma, skin, favorite) => {
 }
 
 const addToFavorites = (skin) => {
-    localStorage.setItem(`${skin}`, JSON.stringify(skin))
+    localStorage.setItem(`${skin.displayName}`, JSON.stringify(skin))
     favorites.push(skin)
     console.log(favorites)
 }
 
 const removeFromFavorites = (skin) => {
-    localStorage.removeItem(`${skin}`)
+    localStorage.removeItem(`${skin.displayName}`)
     favorites.splice(favorites.indexOf(skin), 1)
     console.log(favorites)
 }

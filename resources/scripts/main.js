@@ -123,11 +123,11 @@ const createBackButton = (parentContainer, weaponOrSkin, currentPage, previousPa
     parentContainer.appendChild(backContainer)
     const backText = document.createElement('h3')
     if (currentPage === specificWeaponContainer) {
-        backText.setHTM = 'Back to weapons'
+        backText.appendChild(document.createTextNode('Back to weapons'))
     } else if (weaponOrSkin) {
-    backText.innerHTML = `Back to ${weaponOrSkin.displayName}`
+    backText.appendChild(document.createTextNode(`Back to ${weaponOrSkin.displayName}`))
     } else {
-        backText.innerHTML = 'Back to Favorites'
+        backText.appendChild(document.createTextNode('Back to Favorites'))
     }
     backContainer.appendChild(backText)
     backContainer.addEventListener('click', () => {
@@ -220,7 +220,7 @@ const getSkinData = (skin, weapon, favorite) => {
     weaponNameContainer.appendChild(skinHeader);
     if (skin.levels[(skin.levels.length - 1)].streamedVideo) {
         const skinContainer = document.createElement('div')
-        skinContainer.classList.add('skin-container')
+        skinContainer.classList.add('skin-container-column')
         specificSkinContainer.appendChild(skinContainer)
         const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('skin-full-image-container-no-click')
@@ -367,7 +367,7 @@ const getChromaData = (chroma, skin, favorite) => {
     chromaHeader.innerHTML = `${chroma.displayName}`
     chromaNameContainer.appendChild(chromaHeader)
     const skinContainer = document.createElement('div')
-    skinContainer.classList.add('skin-container')
+    skinContainer.classList.add('skin-container-column')
     specificChromaContainer.appendChild(skinContainer)
     const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('skin-full-image-container-no-click')

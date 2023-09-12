@@ -8,9 +8,16 @@ const landingContainer = document.getElementById('landing-container')
 const homeButton = document.getElementById('home-button')
 const myFavoritesButton = document.getElementById('my-favorites-button')
 const myFavorites = document.getElementById('my-favorites')
-const favorites = []
+let favorites = []
+
+function storedFavorites() {
+    for (let i = 0; i < localStorage.length; i++) {
+        favorites.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+    }   
+}
 
 const enterSite = () => {
+    storedFavorites()
     landingContainer.classList.add('hidden');
     mobileFooter.classList.remove('hidden');
     weaponContainer.classList.remove('hidden');
@@ -34,7 +41,6 @@ const goHome = () => {
 homeButton.addEventListener('click', goHome);
 
 const goToFavorites = () => {
-    const storedFavorites = JSON.parse(localStorage.getItem('favorites'))
     if (myFavorites.classList.contains('hidden')) {
     myFavorites.classList.remove('hidden')
     weaponContainer.classList.add('hidden')
@@ -54,7 +60,7 @@ const goToFavorites = () => {
     const myFavoritesContainer = document.createElement('div')
     myFavoritesContainer.classList.add('skin-container')
     myFavorites.appendChild(myFavoritesContainer)
-    for (const favorite of storedFavorites)
+    for (const favorite of favorites)
         if (favorite.fullRender) {
             const weaponImgContainer = document.createElement('div')
             weaponImgContainer.classList.add('weapon-image-container')
@@ -117,7 +123,7 @@ const createBackButton = (parentContainer, weaponOrSkin, currentPage, previousPa
     parentContainer.appendChild(backContainer)
     const backText = document.createElement('h3')
     if (currentPage === specificWeaponContainer) {
-        backText.innerHTML = 'Back to weapons'
+        backText.setHTM = 'Back to weapons'
     } else if (weaponOrSkin) {
     backText.innerHTML = `Back to ${weaponOrSkin.displayName}`
     } else {
@@ -425,14 +431,14 @@ const getChromaData = (chroma, skin, favorite) => {
 }
 
 const addToFavorites = (skin) => {
-    favorites.push(skin);
-    window.localStorage.setItem('favorites', JSON.stringify(favorites))
+    localStorage.setItem(`${skin}`, JSON.stringify(skin))
+    favorites.push(skin)
     console.log(favorites)
 }
 
 const removeFromFavorites = (skin) => {
+    localStorage.removeItem(`${skin}`)
     favorites.splice(favorites.indexOf(skin), 1)
-    window.localStorage.setItem('favorites', JSON.stringify(favorites))
     console.log(favorites)
 }
 

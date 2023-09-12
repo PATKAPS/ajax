@@ -70,10 +70,11 @@ const goToFavorites = () => {
             const removeFavoriteButton = document.createElement('i')
             removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
             favoriteButtonContainer.appendChild(removeFavoriteButton)
-            removeFavoriteButton.addEventListener('click', () => {
+            removeFavoriteButton.addEventListener('click', (event) => {
                 removeFromFavorites()
                 removeFavoriteButton.remove()
                 weaponImgContainer.remove()
+                event.stopPropagation()
             })
             weaponImgContainer.addEventListener('click', () => {
                 getChromaData(favorite)
@@ -94,10 +95,11 @@ const goToFavorites = () => {
             const removeFavoriteButton = document.createElement('i')
             removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
             favoriteButtonContainer.appendChild(removeFavoriteButton)
-            removeFavoriteButton.addEventListener('click', () => {
+            removeFavoriteButton.addEventListener('click', (event) => {
                 removeFromFavorites()
                 removeFavoriteButton.remove()
                 weaponImgContainer.remove()
+                event.stopPropagation()
             })
             weaponImgContainer.addEventListener('click', () => {
                 getSkinData(favorite)

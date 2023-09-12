@@ -439,7 +439,7 @@ const addToFavorites = (skin) => {
 }
 
 const removeFromFavorites = (skin) => {
-    localStorage.removeItem(`${skin.displayName}`)
+    localStorage.removeItem(`${skin}`)
     favorites.splice(favorites.indexOf(skin), 1)
     console.log(favorites)
 }

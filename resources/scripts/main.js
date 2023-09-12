@@ -9,8 +9,6 @@ const homeButton = document.getElementById('home-button')
 const myFavoritesButton = document.getElementById('my-favorites-button')
 const myFavorites = document.getElementById('my-favorites')
 const favorites = []
-window.localStorage.setItem('favorites', JSON.stringify(favorites))
-
 
 const enterSite = () => {
     landingContainer.classList.add('hidden');

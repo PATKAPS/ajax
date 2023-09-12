@@ -12,7 +12,9 @@ let favorites = []
 
 function storedFavorites() {
     for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i)) {
         favorites.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+        }
     }   
 }
 

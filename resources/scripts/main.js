@@ -80,7 +80,7 @@ const goToFavorites = () => {
             removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
             favoriteButtonContainer.appendChild(removeFavoriteButton)
             removeFavoriteButton.addEventListener('click', (event) => {
-                removeFromFavorites()
+                removeFromFavorites(skin)
                 removeFavoriteButton.remove()
                 weaponImgContainer.remove()
                 event.stopPropagation()
@@ -105,7 +105,7 @@ const goToFavorites = () => {
             removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
             favoriteButtonContainer.appendChild(removeFavoriteButton)
             removeFavoriteButton.addEventListener('click', (event) => {
-                removeFromFavorites()
+                removeFromFavorites(skin)
                 removeFavoriteButton.remove()
                 weaponImgContainer.remove()
                 event.stopPropagation()
@@ -439,7 +439,7 @@ const addToFavorites = (skin) => {
 }
 
 const removeFromFavorites = (skin) => {
-    localStorage.removeItem(`${skin}`)
+    localStorage.removeItem(`${skin.displayName}`)
     favorites.splice(favorites.indexOf(skin), 1)
     console.log(favorites)
 }

@@ -20,6 +20,7 @@ function storedFavorites() {
 
 const enterSite = () => {
     storedFavorites()
+    console.log(favorites)
     landingContainer.classList.add('hidden');
     mobileFooter.classList.remove('hidden');
     weaponContainer.classList.remove('hidden');
@@ -247,7 +248,7 @@ const getSkinData = (skin, weapon, favorite) => {
         favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-2xl')
         const removeFavoriteButton = document.createElement('i')
         removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
-        if (favorites.indexOf(skin) === -1) {
+        if (favorites.indexOf(skin) === -1 && !localStorage.getItem(`${skin.displayName}`)) {
             favoriteButtonContainer.appendChild(favoriteButton)
         } else {
             favoriteButtonContainer.appendChild(removeFavoriteButton)
@@ -385,7 +386,7 @@ const getChromaData = (chroma, skin, favorite) => {
         favoriteButton.classList.add('fa-regular', 'fa-heart', 'fa-xl')
         const removeFavoriteButton = document.createElement('i')
         removeFavoriteButton.classList.add('fa-solid', 'fa-heart', 'fa-2xl')
-        if (favorites.indexOf(chroma) === -1) {
+        if (favorites.indexOf(chroma) === -1 && !localStorage.getItem(`${chroma.displayName}`)) {
             favoriteButtonContainer.appendChild(favoriteButton)
         } else {
             favoriteButtonContainer.appendChild(removeFavoriteButton)
@@ -439,9 +440,14 @@ const addToFavorites = (skin) => {
 }
 
 const removeFromFavorites = (skin) => {
-    console.log(skin)
+    console.log(skin.displayName)
     localStorage.removeItem(`${skin.displayName}`)
-    favorites.splice(favorites.indexOf(skin), 1)
+    favorites.forEach((favorite) => {
+        if (favorite.displayName === skin.displayName) {
+            console.log(favorite.displayName)
+            favorites.splice(favorites.indexOf(favorite), 1)
+        }
+    })
     console.log(favorites)
 }
 

@@ -170,7 +170,7 @@ h1 {
 }
 
 .image-container-height {
-    height: 10rem;
+    height: 8rem;
     object-fit: contain;
 }
 
@@ -189,10 +189,15 @@ h1 {
     object-fit: contain;
 }
 
+.chroma-img {
+    width: 100%;
+    object-fit: contain;
+}
+
 .weapon-image-height {
     height: 100%;
     max-width: 100%;
-    object-fit: contain;
+    object-fit: scale-down;
 }
 
 #my-favorites {

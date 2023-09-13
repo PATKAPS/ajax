@@ -258,13 +258,10 @@ const getSkinData = (skin, weapon, favorite) => {
         weaponName.classList.add('weapon-name')
         weaponName.appendChild(document.createTextNode(`${skin.displayName}`))
         skinImgContainer.appendChild(weaponName)
-        const imgContainer = document.createElement('div')
-        imgContainer.classList.add('image-container-height')
-        skinImgContainer.appendChild(imgContainer)
         const skinImg = document.createElement('img')
-        skinImg.classList.add('weapon-image-height')
+        skinImg.classList.add('chroma-img')
         skinImg.src = `${skin.chromas[0].fullRender}`
-        imgContainer.appendChild(skinImg)
+        skinImgContainer.appendChild(skinImg)
         const skinVideoContainer = document.createElement('div')
         skinVideoContainer.classList.add('video-container')
         skinContainer.appendChild(skinVideoContainer)
@@ -457,7 +454,7 @@ const getChromaData = (chroma, skin, favorite) => {
     } else {
         const nullVideoImgContainer = document.createElement('div')
         nullVideoImgContainer.classList.add('null-image-container')
-        specificChromaContainer.appendChild(nullVideoImgContainer)
+        skinContainerContainer.appendChild(nullVideoImgContainer)
         const nullVideoImg = document.createElement('img')
         nullVideoImg.classList.add('null-image')
         nullVideoImg.src = 'https://i.redd.it/h044s6irkmr81.png'

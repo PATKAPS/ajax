@@ -153,6 +153,10 @@ h1 {
     color: rgb(255,255,255)
 }
 
+button {
+    color: rgb(255,255,255)
+}
+
 .weapon-image-container {
     background-color: rgba(200, 200, 200, 0.9);
     position: relative;

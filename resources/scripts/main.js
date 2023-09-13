@@ -223,10 +223,10 @@ const getSpecificWeaponData = (weapon) => {
         weaponName.appendChild(document.createTextNode(`${skin.displayName}`))
         skinImgContainer.appendChild(weaponName)
         const imgContainer = document.createElement('div')
-        imgContainer.classList.add('image-container')
+        imgContainer.classList.add('image-container-height')
         skinImgContainer.appendChild(imgContainer)
         const skinImg = document.createElement('img')
-        skinImg.classList.add('weapon-image')
+        skinImg.classList.add('weapon-image-height')
         skinImg.src = `${skin.chromas[0].fullRender}`
         imgContainer.appendChild(skinImg)
         skinImgContainer.addEventListener('click', () => {
@@ -259,10 +259,10 @@ const getSkinData = (skin, weapon, favorite) => {
         weaponName.appendChild(document.createTextNode(`${skin.displayName}`))
         skinImgContainer.appendChild(weaponName)
         const imgContainer = document.createElement('div')
-        imgContainer.classList.add('image-container')
+        imgContainer.classList.add('image-container-height')
         skinImgContainer.appendChild(imgContainer)
         const skinImg = document.createElement('img')
-        skinImg.classList.add('weapon-image')
+        skinImg.classList.add('weapon-image-height')
         skinImg.src = `${skin.chromas[0].fullRender}`
         imgContainer.appendChild(skinImg)
         const skinVideoContainer = document.createElement('div')
@@ -318,10 +318,10 @@ const getSkinData = (skin, weapon, favorite) => {
             weaponName.appendChild(document.createTextNode(`${chroma.displayName}`))
             skinImgContainer.appendChild(weaponName)
             const imgContainer = document.createElement('div')
-            imgContainer.classList.add('image-container')
+            imgContainer.classList.add('image-container-height')
             skinImgContainer.appendChild(imgContainer)
             const skinImg = document.createElement('img')
-            skinImg.classList.add('weapon-image')
+            skinImg.classList.add('weapon-image-height')
             skinImg.src = `${chroma.fullRender}`
             imgContainer.appendChild(skinImg)
             skinImgContainer.addEventListener('click', () => {

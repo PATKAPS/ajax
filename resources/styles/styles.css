@@ -5,12 +5,8 @@
     font-family: 'Roboto', sans-serif;
 }
 
-html {
-    height: -webkit-fill-available;
-}
-
 body {
-    height: -webkit-fill-available;
+    height: 100dvh;
 }
 
 .hero-container {

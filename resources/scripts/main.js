@@ -68,10 +68,17 @@ const goToFavorites = () => {
             const weaponImgContainer = document.createElement('div')
             weaponImgContainer.classList.add('weapon-image-container')
             myFavoritesContainer.appendChild(weaponImgContainer)
+            const weaponName = document.createElement('h3')
+            weaponName.classList.add('weapon-name')
+            weaponName.appendChild(document.createTextNode(`${favorite.displayName}`))
+            weaponImgContainer.appendChild(weaponName)
+            const imgContainer = document.createElement('div')
+            imgContainer.classList.add('image-container-height')
+            weaponImgContainer.appendChild(imgContainer)
             const weaponImg = document.createElement('img')
-            weaponImg.classList.add('weapon-image')
+            weaponImg.classList.add('weapon-image-height')
             weaponImg.src = `${favorite.fullRender}`
-            weaponImgContainer.appendChild(weaponImg)
+            imgContainer.appendChild(weaponImg)
             const favoriteButtonContainer = document.createElement('div')
             favoriteButtonContainer.classList.add('favorite-button-container')
             weaponImgContainer.appendChild(favoriteButtonContainer)
@@ -93,10 +100,17 @@ const goToFavorites = () => {
             const weaponImgContainer = document.createElement('div')
             weaponImgContainer.classList.add('weapon-image-container')
             myFavoritesContainer.appendChild(weaponImgContainer)
+            const weaponName = document.createElement('h3')
+            weaponName.classList.add('weapon-name')
+            weaponName.appendChild(document.createTextNode(`${favorite.displayName}`))
+            weaponImgContainer.appendChild(weaponName)
+            const imgContainer = document.createElement('div')
+            imgContainer.classList.add('image-container-height')
+            weaponImgContainer.appendChild(imgContainer)
             const weaponImg = document.createElement('img')
-            weaponImg.classList.add('weapon-image')
+            weaponImg.classList.add('weapon-image-height')
             weaponImg.src = `${favorite.chromas[0].fullRender}`
-            weaponImgContainer.appendChild(weaponImg)
+            imgContainer.appendChild(weaponImg)
             const favoriteButtonContainer = document.createElement('div')
             favoriteButtonContainer.classList.add('favorite-button-container')
             weaponImgContainer.appendChild(favoriteButtonContainer)
@@ -169,10 +183,17 @@ const populateWeaponContainer = (weaponData) => {
         const weaponImgContainer = document.createElement('div');
         weaponImgContainer.classList.add('weapon-image-container');
         weaponsContainer.appendChild(weaponImgContainer);
+        const weaponName = document.createElement('h3')
+        weaponName.classList.add('weapon-name')
+        weaponName.appendChild(document.createTextNode(`${weapon.displayName}`))
+        weaponImgContainer.appendChild(weaponName)
+        const imgContainer = document.createElement('div')
+        imgContainer.classList.add('image-container-height')
+        weaponImgContainer.appendChild(imgContainer)
         const weaponImg = document.createElement('img');
-        weaponImg.classList.add('weapon-image');
+        weaponImg.classList.add('weapon-image-height');
         weaponImg.src = `${weapon.displayIcon}`;
-        weaponImgContainer.appendChild(weaponImg);
+        imgContainer.appendChild(weaponImg);
         weaponImgContainer.addEventListener('click', () => {
             getSpecificWeaponData(weapon)
         })
@@ -187,8 +208,7 @@ const getSpecificWeaponData = (weapon) => {
     weaponNameContainer.classList.add('weapon-name-container');
     specificWeaponContainer.appendChild(weaponNameContainer);
     const weaponName = document.createElement('h2');
-    weaponName.classList.add('weapon-name');
-    weaponName.innerHTML = `${weapon.displayName}`;
+    weaponName.appendChild(document.createTextNode(`${weapon.displayName}`));
     weaponNameContainer.appendChild(weaponName);
     const skinsContainer = document.createElement('div');
     skinsContainer.classList.add('skin-container');
@@ -198,10 +218,17 @@ const getSpecificWeaponData = (weapon) => {
         const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('skin-full-image-container')
         skinsContainer.appendChild(skinImgContainer)
+        const weaponName = document.createElement('h3')
+        weaponName.classList.add('weapon-name')
+        weaponName.appendChild(document.createTextNode(`${skin.displayName}`))
+        skinImgContainer.appendChild(weaponName)
+        const imgContainer = document.createElement('div')
+        imgContainer.classList.add('image-container')
+        skinImgContainer.appendChild(imgContainer)
         const skinImg = document.createElement('img')
         skinImg.classList.add('weapon-image')
         skinImg.src = `${skin.chromas[0].fullRender}`
-        skinImgContainer.appendChild(skinImg)
+        imgContainer.appendChild(skinImg)
         skinImgContainer.addEventListener('click', () => {
             getSkinData(skin, weapon)
         })
@@ -218,8 +245,7 @@ const getSkinData = (skin, weapon, favorite) => {
     weaponNameContainer.classList.add('weapon-name-container');
     specificSkinContainer.appendChild(weaponNameContainer);
     const skinHeader = document.createElement('h2')
-    skinHeader.classList.add('weapon-name')
-    skinHeader.innerHTML = `${skin.displayName}`
+    skinHeader.appendChild(document.createTextNode(`${skin.displayName}`))
     weaponNameContainer.appendChild(skinHeader);
     if (skin.levels[(skin.levels.length - 1)].streamedVideo) {
         const skinContainer = document.createElement('div')
@@ -228,10 +254,17 @@ const getSkinData = (skin, weapon, favorite) => {
         const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('skin-full-image-container-no-click')
         skinContainer.appendChild(skinImgContainer)
+        const weaponName = document.createElement('h3')
+        weaponName.classList.add('weapon-name')
+        weaponName.appendChild(document.createTextNode(`${skin.displayName}`))
+        skinImgContainer.appendChild(weaponName)
+        const imgContainer = document.createElement('div')
+        imgContainer.classList.add('image-container')
+        skinImgContainer.appendChild(imgContainer)
         const skinImg = document.createElement('img')
-        skinImg.classList.add('chroma-image')
+        skinImg.classList.add('weapon-image')
         skinImg.src = `${skin.chromas[0].fullRender}`
-        skinImgContainer.appendChild(skinImg)
+        imgContainer.appendChild(skinImg)
         const skinVideoContainer = document.createElement('div')
         skinVideoContainer.classList.add('video-container')
         skinContainer.appendChild(skinVideoContainer)
@@ -272,8 +305,7 @@ const getSkinData = (skin, weapon, favorite) => {
         chromaContainer.classList.add('chroma-container')
         skinContainer.appendChild(chromaContainer)
         const chromaName = document.createElement('h3')
-        chromaName.classList.add('weapon-name')
-        chromaName.innerHTML = `${skin.displayName} Chromas`;
+        chromaName.appendChild(document.createTextNode(`${skin.displayName} Chromas`));
         chromaNameContainer.appendChild(chromaName)
         if (skin.chromas.length > 1) {
         for (let i = 1; i < skin.chromas.length; i++) {
@@ -281,10 +313,17 @@ const getSkinData = (skin, weapon, favorite) => {
             const skinImgContainer = document.createElement('div')
             skinImgContainer.classList.add('skin-full-image-container')
             chromaContainer.appendChild(skinImgContainer)
+            const weaponName = document.createElement('h3')
+            weaponName.classList.add('weapon-name')
+            weaponName.appendChild(document.createTextNode(`${chroma.displayName}`))
+            skinImgContainer.appendChild(weaponName)
+            const imgContainer = document.createElement('div')
+            imgContainer.classList.add('image-container')
+            skinImgContainer.appendChild(imgContainer)
             const skinImg = document.createElement('img')
-            skinImg.classList.add('chroma-image')
+            skinImg.classList.add('weapon-image')
             skinImg.src = `${chroma.fullRender}`
-            skinImgContainer.appendChild(skinImg)
+            imgContainer.appendChild(skinImg)
             skinImgContainer.addEventListener('click', () => {
                 getChromaData(chroma, skin)
             })
@@ -366,8 +405,7 @@ const getChromaData = (chroma, skin, favorite) => {
     chromaNameContainer.classList.add('weapon-name-container')
     specificChromaContainer.appendChild(chromaNameContainer)
     const chromaHeader = document.createElement('h2')
-    chromaHeader.classList.add('weapon-name')
-    chromaHeader.innerHTML = `${chroma.displayName}`
+    chromaHeader.appendChild(document.createTextNode(`${chroma.displayName}`))
     chromaNameContainer.appendChild(chromaHeader)
     const skinContainer = document.createElement('div')
     skinContainer.classList.add('skin-container-column')

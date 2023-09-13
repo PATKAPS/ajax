@@ -259,7 +259,7 @@ const getSkinData = (skin, weapon, favorite) => {
         weaponName.appendChild(document.createTextNode(`${skin.displayName}`))
         skinImgContainer.appendChild(weaponName)
         const skinImg = document.createElement('img')
-        skinImg.classList.add('chroma-img')
+        skinImg.classList.add('chroma-image')
         skinImg.src = `${skin.chromas[0].fullRender}`
         skinImgContainer.appendChild(skinImg)
         const skinVideoContainer = document.createElement('div')

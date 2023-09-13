@@ -5,12 +5,8 @@
     font-family: 'Roboto', sans-serif;
 }
 
-body {
-    height: 100dvh;
-}
-
 .hero-container {
-    height: 100vh;
+    height: 100dvh;
     background-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -26,7 +22,7 @@ body {
 
 #landing-container {
     position: absolute;
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -67,7 +63,7 @@ p {
 
 #weapon-container {
     position: absolute;
-    height: 91vh;
+    height: 91dvh;
     width: 90vw;
     left: 0;
     right: 0;
@@ -82,7 +78,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 91vh;
+    height: 91dvh;
     width: 90vw;
     left: 0;
     right: 0;
@@ -94,7 +90,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 91vh;
+    height: 91dvh;
     width: 90vw;
     left: 0;
     right: 0;
@@ -106,7 +102,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 91vh;
+    height: 91dvh;
     width: 90vw;
     left: 0;
     right: 0;
@@ -166,6 +162,7 @@ button {
     border-radius: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
+    max-height: 10rem;
     display: flex;
     align-items: center;
     display: flex;
@@ -212,11 +209,11 @@ button {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 85vh;
+    height: 91dvh;
     width: 90vw;
     left: 0;
     right: 0;
-    margin: 5vh auto;
+    margin: 1rem auto;
     overflow-y: auto;
 }
 
@@ -375,15 +372,13 @@ button {
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: space-evenly;
     }
     .weapon-image-container {
-        margin: 1rem;
         flex-basis: calc(100% / 3 - 4rem);
 
     }
     .skin-full-image-container {
-        margin: 1rem;
         flex-basis: calc(100% / 3 - 4rem);
     }
 }
@@ -393,14 +388,12 @@ button {
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: space-evenly;
     }
     .weapon-image-container {
-        margin: 1rem;
         flex-basis: calc(100% / 2 - 4rem);
     }
     .skin-full-image-container {
-        margin: 1rem;
         flex-basis: calc(100% / 2 - 4rem);
     }
 }
@@ -410,14 +403,12 @@ button {
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: space-evenly;
     }
     .weapon-image-container {
-        margin: 1rem;
         flex-basis: calc(100% / 2 - 4rem);
     }
     .skin-full-image-container {
-        margin: 1rem;
         flex-basis: calc(100% / 2 - 4rem);
     }
 }
@@ -429,14 +420,12 @@ button {
         flex-direction: row;
         flex-wrap: wrap;
         align-items: flex-start;
-        justify-content: center;
+        justify-content: space-evenly;
     }
     .weapon-image-container {
-        margin: 1rem;
         flex-basis: calc(100% / 1 - 4rem);
     }
     .skin-full-image-container {
-        margin: 1rem;
         flex-basis: calc(100% / 1 - 4rem);
     }
 }

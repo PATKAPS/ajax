@@ -454,7 +454,7 @@ const getChromaData = (chroma, skin, favorite) => {
     } else {
         const nullVideoImgContainer = document.createElement('div')
         nullVideoImgContainer.classList.add('null-image-container')
-        skinContainerContainer.appendChild(nullVideoImgContainer)
+        skinContainer.appendChild(nullVideoImgContainer)
         const nullVideoImg = document.createElement('img')
         nullVideoImg.classList.add('null-image')
         nullVideoImg.src = 'https://i.redd.it/h044s6irkmr81.png'

@@ -216,7 +216,7 @@ const getSpecificWeaponData = (weapon) => {
     for (const skin of weapon.skins) {
         if (skin.contentTierUuid && skin.chromas[0].fullRender) {
         const skinImgContainer = document.createElement('div')
-        skinImgContainer.classList.add('skin-full-image-container')
+        skinImgContainer.classList.add('weapon-image-container')
         skinsContainer.appendChild(skinImgContainer)
         const weaponName = document.createElement('h3')
         weaponName.classList.add('weapon-name')

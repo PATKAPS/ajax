@@ -162,7 +162,7 @@ button {
     border-radius: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
-    max-height: 10rem;
+    width: 10rem;
     display: flex;
     align-items: center;
     display: flex;
@@ -179,7 +179,11 @@ button {
 }
 
 .weapon-name {
+    width: 100%;
     margin-bottom: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     text-align: center;
 }
 
@@ -223,6 +227,7 @@ button {
     border-radius: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
+    max-width: 70vw;
     display: flex;
     align-items: center;
     display: flex;
@@ -235,6 +240,7 @@ button {
     border-radius: 1rem;
     margin-bottom: 1rem;
     padding: 1rem;
+    max-width: 70vw;
     display: flex;
     align-items: center;
     display: flex;

@@ -254,10 +254,6 @@ const getSkinData = (skin, weapon, favorite) => {
         const skinImgContainer = document.createElement('div')
         skinImgContainer.classList.add('skin-full-image-container-no-click')
         skinContainer.appendChild(skinImgContainer)
-        const weaponName = document.createElement('h3')
-        weaponName.classList.add('weapon-name')
-        weaponName.appendChild(document.createTextNode(`${skin.displayName}`))
-        skinImgContainer.appendChild(weaponName)
         const skinImg = document.createElement('img')
         skinImg.classList.add('chroma-image')
         skinImg.src = `${skin.chromas[0].fullRender}`

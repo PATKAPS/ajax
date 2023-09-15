@@ -20,7 +20,6 @@ function storedFavorites() {
 
 const enterSite = () => {
     storedFavorites()
-    console.log(favorites)
     landingContainer.classList.add('hidden');
     mobileFooter.classList.remove('hidden');
     weaponContainer.classList.remove('hidden');

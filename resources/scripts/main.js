@@ -20,10 +20,10 @@ function storedFavorites() {
 
 const enterSite = () => {
     storedFavorites()
+    getWeaponData().then(populateWeaponContainer);
     landingContainer.classList.add('hidden');
     mobileFooter.classList.remove('hidden');
     weaponContainer.classList.remove('hidden');
-    getWeaponData().then(populateWeaponContainer);
 }
 
 enterButton.addEventListener('click', enterSite);

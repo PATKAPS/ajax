@@ -380,6 +380,58 @@ const getSkinData = (skin, weapon, favorite) => {
         nullVideo.classList.add('text-center')
         nullVideo.innerHTML = 'Sorry, video for this skin does not exist in the API.'
         nullVideoImgContainer.appendChild(nullVideo)
+        if (skin.chromas.length > 1) {
+            const chromaNameContainer = document.createElement('div')
+            chromaNameContainer.classList.add('weapon-name-container')
+            skinContainer.appendChild(chromaNameContainer)
+            const chromaContainer = document.createElement('div')
+            chromaContainer.classList.add('chroma-container')
+            skinContainer.appendChild(chromaContainer)
+            const chromaName = document.createElement('h3')
+            chromaName.appendChild(document.createTextNode(`${skin.displayName} Chromas`));
+            chromaNameContainer.appendChild(chromaName)
+            for (let i = 1; i < skin.chromas.length; i++) {
+                let chroma = skin.chromas[i]
+                const skinImgContainer = document.createElement('div')
+                skinImgContainer.classList.add('skin-full-image-container')
+                chromaContainer.appendChild(skinImgContainer)
+                const weaponName = document.createElement('h3')
+                weaponName.classList.add('weapon-name')
+                weaponName.appendChild(document.createTextNode(`${chroma.displayName}`))
+                skinImgContainer.appendChild(weaponName)
+                const imgContainer = document.createElement('div')
+                imgContainer.classList.add('image-container-height')
+                skinImgContainer.appendChild(imgContainer)
+                const skinImg = document.createElement('img')
+                skinImg.classList.add('weapon-image-height')
+                skinImg.src = `${chroma.fullRender}`
+                imgContainer.appendChild(skinImg)
+                skinImgContainer.addEventListener('click', () => {
+                    getChromaData(chroma, skin)
+                })
+            }
+                } else {
+                    const chromaNameContainer = document.createElement('div')
+                    chromaNameContainer.classList.add('weapon-name-container')
+                    skinContainer.appendChild(chromaNameContainer)
+                    const chromaContainer = document.createElement('div')
+                    chromaContainer.classList.add('chroma-container')
+                    skinContainer.appendChild(chromaContainer)
+                    const chromaName = document.createElement('h3')
+                    chromaName.appendChild(document.createTextNode(`${skin.displayName} Chromas`));
+                    chromaNameContainer.appendChild(chromaName)
+                    const nullVideoImgContainer = document.createElement('div')
+                    nullVideoImgContainer.classList.add('null-image-container')
+                    chromaContainer.appendChild(nullVideoImgContainer)
+                    const nullVideoImg = document.createElement('img')
+                    nullVideoImg.classList.add('null-image')
+                    nullVideoImg.src = 'https://i.redd.it/h044s6irkmr81.png'
+                    nullVideoImgContainer.appendChild(nullVideoImg)
+                    const nullVideo = document.createElement('h3')
+                    nullVideo.classList.add('text-center')
+                    nullVideo.innerHTML = 'Sorry, chromas for this skin do not exist.'
+                    nullVideoImgContainer.appendChild(nullVideo)
+                }
     }
     if (weapon) {
     createBackButton(specificSkinContainer, weapon, specificSkinContainer, specificWeaponContainer)
